@@ -16,7 +16,7 @@ class _StudentProfessorState extends State<StudentProfessor> {
   void _onStudentClick() {
     Navigator.push(
       context,
-      _createRoute(const StudentLogin()),
+      _createRoute( StudentLogin()),
     );
   }
 
@@ -57,7 +57,7 @@ class _StudentProfessorState extends State<StudentProfessor> {
           children: <Widget>[
             const Positioned(
               top: 75,
-              left: 73,
+              left: 66,
               child: Text(
                 "             are you \n Student or Professor? ",
                 style: TextStyle(
@@ -89,7 +89,7 @@ class _StudentProfessorState extends State<StudentProfessor> {
                       ..scale(1.1)
                       ..translate(-10, -10))
                         : Matrix4.identity(),
-                    child: Image.asset('images/welcome2.png'),
+                    child: Image.asset('images/students.png'),
                   ),
                 ),
               ),
@@ -115,7 +115,7 @@ class _StudentProfessorState extends State<StudentProfessor> {
                       ..scale(1.1)
                       ..translate(-10, -10))
                         : Matrix4.identity(),
-                    child: Image.asset('images/welcome2.png'),
+                    child: Image.asset('images/professors.png'),
                   ),
                 ),
               ),
