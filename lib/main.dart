@@ -41,35 +41,35 @@ Route _createRoute(){
               },
             ),
             const Positioned(
-              left: 60,
-              top: 60,
+              left: 100,
+              top: 80,
               child: Text(
               "Welcome to" ,
                 style: TextStyle(
                 color: Color.fromARGB(255, 24, 21, 66) ,
-                fontSize: 40,
+                fontSize: 55,
                 fontWeight: FontWeight.w200,
                 fontFamily: 'merich',
             ),
             )),
             const Positioned(
-              left: 150,
-              top: 95,
+              left: 240,
+              top: 160,
               child: Text(
                 "UniHub",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66) ,
-                  fontSize: 66,
-                  fontWeight: FontWeight.w900 ,
+                  fontSize: 82,
+                  fontWeight: FontWeight.w700 ,
                   fontFamily: 'merich',
                   fontStyle: FontStyle.italic,
                 ),
               )),
             Positioned(
-              right: 0,
+              right: -50,
               bottom: 0,
-              height: 520,
-              width: 400,
+              height: 750,
+              width: 500,
               child: SizedBox(child: Image.asset('images/welcome2.png' , fit:BoxFit.fill,)
             )),
 

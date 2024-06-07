@@ -38,8 +38,8 @@ class _ProfessorLogin extends State<ProfessorLogin> {
           'Professor Page',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 22,
-            fontWeight: FontWeight.w500,
+            fontSize: 24,
+            fontWeight: FontWeight.w700,
             fontFamily: 'merich',
             fontStyle: FontStyle.italic,
           ),
@@ -53,10 +53,10 @@ class _ProfessorLogin extends State<ProfessorLogin> {
         child: Stack(
           children: <Widget>[
             Positioned(
-                left: 65,
+                left: 110,
                 top: heightOfScreen * 0.39,
                 child: SizedBox(
-                  width: 350,
+                  width: 500,
                   child: TextFormField(
                     controller: professorID,
                     textAlign: TextAlign.left,
@@ -67,6 +67,7 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                       labelText: 'Professor ID',
                       labelStyle: const TextStyle(
                           color: Color.fromARGB(255, 24, 21, 66),
+                          fontSize: 23,
                           fontWeight: FontWeight.w300,
                           fontFamily: 'chunck'
                       ),
@@ -77,6 +78,7 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                       hintText: 'please add your ID here!',
                       hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 24, 21, 66),
+                        fontSize: 24,
                         fontStyle: FontStyle.italic,
                       ),
                       enabledBorder: OutlineInputBorder(
@@ -93,10 +95,10 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                   ),
                 )),
             Positioned(
-                left: 65,
-                top: heightOfScreen * 0.48,
+                left: 110,
+                top: heightOfScreen * 0.465,
                 child: SizedBox(
-                  width: 350,
+                  width: 500,
                   child: TextFormField(
                     controller: password,
                     obscureText: obscure,
@@ -107,6 +109,7 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                       labelText: 'Password',
                       labelStyle: const TextStyle(
                           color: Color.fromARGB(255, 24, 21, 66),
+                          fontSize: 23,
                           fontWeight: FontWeight.w300,
                           fontFamily: 'chunck'
                       ),
@@ -117,6 +120,7 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                       hintText: 'Please add the Password here!',
                       hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 24, 21, 66),
+                        fontSize: 24,
                         fontStyle: FontStyle.italic,
                       ),
                       suffixIcon: IconButton(
@@ -144,8 +148,8 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                   ),
                 )),
             Positioned(
-              top: heightOfScreen * 0.56,
-              left: 65,
+              top: heightOfScreen * 0.53,
+              left: 110,
               child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
@@ -159,12 +163,13 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                     style: TextStyle(
                         color: Color.fromARGB(255, 24, 21, 66),
                         fontFamily: 'chunck',
-                        fontWeight: FontWeight.w300)),
+                        fontSize: 21,
+                        fontWeight: FontWeight.w100)),
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.56,
-              right: 90,
+              top: heightOfScreen * 0.54,
+              right: 110,
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -177,8 +182,8 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                   onExit: (_) => _onHover(false),
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 200),
-                    width: _isHovered ? 110 : 100,
-                    height: _isHovered ? 50 : 42,
+                    width: _isHovered ? 128 : 120,
+                    height: _isHovered ? 58 : 50,
                     decoration: BoxDecoration(
                       color: _isHovered ? Colors.purple : Colors.white60,
                       borderRadius: BorderRadius.circular(8),
@@ -194,7 +199,7 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                         'Login',
                         style: TextStyle(
                           color: _isHovered ? Colors.white : Colors.purple,
-                          fontSize: 12,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

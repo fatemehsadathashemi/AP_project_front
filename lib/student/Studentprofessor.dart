@@ -56,23 +56,23 @@ class _StudentProfessorState extends State<StudentProfessor> {
         child: Stack(
           children: <Widget>[
             const Positioned(
-              top: 75,
-              left: 66,
+              top: 95,
+              left: 133,
               child: Text(
                 "             are you \n Student or Professor? ",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66),
-                  fontSize: 35,
+                  fontSize: 45,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'chunck',
                 ),
               ),
             ),
             Positioned(
-              left: 33,
-              bottom: 360,
-              height: 150,
-              width: 180,
+              left: 40,
+              bottom: 600,
+              height: 250,
+              width: 300,
               child: MouseRegion(
                 onEnter: (_) => setState(() {
                   _isHoveringStudent = true;
@@ -95,10 +95,10 @@ class _StudentProfessorState extends State<StudentProfessor> {
               ),
             ),
             Positioned(
-              right: 33,
-              bottom: 360,
-              height: 150,
-              width: 180,
+              right: 40,
+              bottom: 600,
+              height: 250,
+              width: 300,
               child: MouseRegion(
                 onEnter: (_) => setState(() {
                   _isHoveringProfessor = true;
@@ -121,8 +121,8 @@ class _StudentProfessorState extends State<StudentProfessor> {
               ),
             ),
             const Positioned(
-              left: 50,
-              bottom: 300,
+              left: 95,
+              bottom: 500,
               child: SizedBox(
                 width: 180,
                 height: 50,
@@ -130,7 +130,7 @@ class _StudentProfessorState extends State<StudentProfessor> {
                   "\"Student\"",
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 21, 66),
-                    fontSize: 28,
+                    fontSize: 33,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'chunck',
                   ),
@@ -138,8 +138,8 @@ class _StudentProfessorState extends State<StudentProfessor> {
               ),
             ),
             const Positioned(
-              right: 25,
-              bottom: 300,
+              right: 95,
+              bottom: 500,
               child: SizedBox(
                 width: 180,
                 height: 50,
@@ -147,7 +147,7 @@ class _StudentProfessorState extends State<StudentProfessor> {
                   "\"Professor\"",
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 21, 66),
-                    fontSize: 28,
+                    fontSize: 33,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'chunck',
                   ),
