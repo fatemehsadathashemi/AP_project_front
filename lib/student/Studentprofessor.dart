@@ -32,9 +32,38 @@ void main() {
                )
              ),
              Positioned(
-                 top: 190,
-                 left: 40,
-                 child: Image.asset('images/students.png'))
+                 left: 33,
+                 bottom: 360,
+                 height: 150,
+                 width: 180,
+                 child: SizedBox( child:  Image.asset('images/students.png')
+                 )),
+             Positioned(
+                 right: 33,
+                 bottom: 360,
+                 height: 150,
+                 width: 180,
+                 child: SizedBox( child:  Image.asset('images/professors.png')
+                 )),
+             Positioned(
+                 left: 33,
+                 bottom: 280,
+                 child: SizedBox(
+                   width: 180,
+                   height: 50,
+                   child: Text(
+                     "Students",
+                     style: TextStyle(
+                       color: Color.fromARGB(255, 24, 21, 66) ,
+                       fontSize: 30,
+                       fontWeight: FontWeight.w700,
+                       fontFamily: 'chunck',
+                     ),
+                   ) ,
+                 )
+
+             )
+
            ],
          ),
 
