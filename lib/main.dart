@@ -41,13 +41,11 @@ class WelcomePage extends StatelessWidget {
             Positioned(
               left: 0,
               bottom: 0,
-              child: SizedBox(child: Image.asset('images/welcome2.jpeg' , fit:BoxFit.fill,)
+              child: SizedBox(child: Image.asset('images/new.png' , fit:BoxFit.fill,)
             )),
           ],
         ),
-
       )
-
 
     );
   }
