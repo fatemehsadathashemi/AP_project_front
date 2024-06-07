@@ -40,7 +40,7 @@ Route _createRoute(){
                 Navigator.of(context).push(_createRoute());
               },
             ),
-            Positioned(
+            const Positioned(
               left: 60,
               top: 60,
               child: Text(
@@ -52,7 +52,7 @@ Route _createRoute(){
                 fontFamily: 'merich',
             ),
             )),
-            Positioned(
+            const Positioned(
               left: 150,
               top: 95,
               child: Text(
