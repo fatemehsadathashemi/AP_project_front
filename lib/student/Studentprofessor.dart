@@ -1,9 +1,9 @@
-import 'package:approjectfront/student/professorLogin.dart';
-import 'package:approjectfront/student/studentLogin.dart';
 import 'package:flutter/material.dart';
+import 'package:approjectfront/student/studentLogin.dart';
+import 'package:approjectfront/student/professorLogin.dart';
 
 class StudentProfessor extends StatefulWidget {
-  const StudentProfessor({super.key});
+  const StudentProfessor({Key? key}) : super(key: key);
 
   @override
   _StudentProfessorState createState() => _StudentProfessorState();
@@ -16,36 +16,22 @@ class _StudentProfessorState extends State<StudentProfessor> {
   void _onStudentClick() {
     Navigator.push(
       context,
-      _createRoute( StudentLogin()),
+      MaterialPageRoute(builder: (context) => StudentLogin()),
     );
   }
 
   void _onProfessorClick() {
     Navigator.push(
       context,
-      _createRoute(const ProfessorLogin()),
-    );
-  }
-
-  Route _createRoute(Widget page) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = Offset(1.0, 0.0);
-        var end = Offset.zero;
-        var curve = Curves.easeInOut;
-        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-        var offsetAnimation = animation.drive(tween);
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      },
+      MaterialPageRoute(builder: (context) => ProfessorLogin()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    double widthOfScreen = MediaQuery.of(context).size.width;
+    double heightOfScreen = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(245, 239, 176, 216),
@@ -55,10 +41,10 @@ class _StudentProfessorState extends State<StudentProfessor> {
         decoration: const BoxDecoration(color: Color.fromARGB(255, 254, 196, 234)),
         child: Stack(
           children: <Widget>[
-            const Positioned(
-              top: 95,
-              left: 133,
-              child: Text(
+            Positioned(
+              top: heightOfScreen * 0.075,
+              left: widthOfScreen * 0.17,
+              child: const Text(
                 "             are you \n Student or Professor? ",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66),
@@ -69,10 +55,10 @@ class _StudentProfessorState extends State<StudentProfessor> {
               ),
             ),
             Positioned(
-              left: 40,
-              bottom: 600,
-              height: 250,
-              width: 300,
+              left: widthOfScreen * 0.055,
+              bottom: heightOfScreen * 0.45,
+              height: heightOfScreen * 0.2,
+              width: widthOfScreen * 0.42,
               child: MouseRegion(
                 onEnter: (_) => setState(() {
                   _isHoveringStudent = true;
@@ -95,10 +81,10 @@ class _StudentProfessorState extends State<StudentProfessor> {
               ),
             ),
             Positioned(
-              right: 40,
-              bottom: 600,
-              height: 250,
-              width: 300,
+              right: widthOfScreen * 0.055,
+              bottom: heightOfScreen * 0.435,
+              height: heightOfScreen * 0.23,
+              width: widthOfScreen * 0.44,
               child: MouseRegion(
                 onEnter: (_) => setState(() {
                   _isHoveringProfessor = true;

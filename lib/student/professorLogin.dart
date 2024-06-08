@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 import 'InfoScreen.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    home: ProfessorLogin(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
-
 class ProfessorLogin extends StatefulWidget {
   const ProfessorLogin({super.key});
 
   @override
-  State<ProfessorLogin> createState() => _ProfessorLogin();
+  State<ProfessorLogin> createState() => _ProfessorLoginState();
 }
 
-class _ProfessorLogin extends State<ProfessorLogin> {
+class _ProfessorLoginState extends State<ProfessorLogin> {
   TextEditingController professorID = TextEditingController();
   TextEditingController password = TextEditingController();
   bool obscure = true, userIDChecker = true, passwordChecker = true;
-  bool _isHovered = false; // Move the variable here
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    double widthOfScreen = MediaQuery.of(context).size.width;
     double heightOfScreen = MediaQuery.of(context).size.height;
+    double widthOfScreen = MediaQuery.of(context).size.width;
 
     void _onHover(bool hovering) {
       setState(() {
@@ -49,107 +42,123 @@ class _ProfessorLogin extends State<ProfessorLogin> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 254, 196, 234)),
+          color: Color.fromARGB(255, 254, 196, 234),
+        ),
         child: Stack(
           children: <Widget>[
             Positioned(
-                left: 110,
-                top: heightOfScreen * 0.39,
-                child: SizedBox(
-                  width: 500,
-                  child: TextFormField(
-                    controller: professorID,
-                    textAlign: TextAlign.left,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white60,
-                      labelText: 'Professor ID',
-                      labelStyle: const TextStyle(
-                          color: Color.fromARGB(255, 24, 21, 66),
-                          fontSize: 23,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'chunck'
-                      ),
-                      border: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 24, 21, 66),)
-                      ),
-                      hintText: 'please add your ID here!',
-                      hintStyle: const TextStyle(
+              height: heightOfScreen * 0.4,
+              width: widthOfScreen * 0.75,
+              top: heightOfScreen * 0.045,
+              left: widthOfScreen * 0.125,
+              child: SizedBox(
+                child: Image.asset('images/prof.png'),
+              ),
+            ),
+            Positioned(
+              left: widthOfScreen * 0.15,
+              top: heightOfScreen * 0.49,
+              child: SizedBox(
+                width: widthOfScreen * 0.7,
+                child: TextFormField(
+                  controller: professorID,
+                  textAlign: TextAlign.left,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white60,
+                    labelText: 'Professor ID',
+                    labelStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 23,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'chunck',
+                    ),
+                    border: const UnderlineInputBorder(
+                      borderSide: BorderSide(
                         color: Color.fromARGB(255, 24, 21, 66),
-                        fontSize: 24,
-                        fontStyle: FontStyle.italic,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.purple.shade100),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 24, 21, 66),
-                            style: BorderStyle.solid),
+                    ),
+                    hintText: 'Please add your ID here!',
+                    hintStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 24,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.purple.shade100),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 24, 21, 66),
+                        style: BorderStyle.solid,
                       ),
                     ),
                   ),
-                )),
+                ),
+              ),
+            ),
             Positioned(
-                left: 110,
-                top: heightOfScreen * 0.465,
-                child: SizedBox(
-                  width: 500,
-                  child: TextFormField(
-                    controller: password,
-                    obscureText: obscure,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white60,
-                      labelText: 'Password',
-                      labelStyle: const TextStyle(
-                          color: Color.fromARGB(255, 24, 21, 66),
-                          fontSize: 23,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'chunck'
-                      ),
-                      border: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 24, 21, 66))
-                      ),
-                      hintText: 'Please add the Password here!',
-                      hintStyle: const TextStyle(
+              left: widthOfScreen * 0.15,
+              top: heightOfScreen * 0.56,
+              child: SizedBox(
+                width: widthOfScreen * 0.7,
+                child: TextFormField(
+                  controller: password,
+                  obscureText: obscure,
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white60,
+                    labelText: 'Password',
+                    labelStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 23,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'chunck',
+                    ),
+                    border: const UnderlineInputBorder(
+                      borderSide: BorderSide(
                         color: Color.fromARGB(255, 24, 21, 66),
-                        fontSize: 24,
-                        fontStyle: FontStyle.italic,
                       ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          obscure ? Icons.visibility : Icons.visibility_off,
-                          color: const Color.fromARGB(255, 24, 21, 66),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            obscure = !obscure;
-                          });
-                        },
+                    ),
+                    hintText: 'Please add the Password here!',
+                    hintStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 24,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        obscure ? Icons.visibility : Icons.visibility_off,
+                        color: const Color.fromARGB(255, 24, 21, 66),
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.purple.shade100),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(
-                            color: Colors.deepPurple.shade800,
-                            style: BorderStyle.solid),
+                      onPressed: () {
+                        setState(() {
+                          obscure = !obscure;
+                        });
+                      },
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.purple.shade100),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 24, 21, 66),
+                        style: BorderStyle.solid,
                       ),
                     ),
                   ),
-                )),
+                ),
+              ),
+            ),
             Positioned(
-              top: heightOfScreen * 0.53,
-              left: 110,
+              top: heightOfScreen * 0.63,
+              left: widthOfScreen * 0.15,
               child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
@@ -159,17 +168,20 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                     ),
                   );
                 },
-                child: const Text("No account? Sign up ",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 24, 21, 66),
-                        fontFamily: 'chunck',
-                        fontSize: 21,
-                        fontWeight: FontWeight.w100)),
+                child: const Text(
+                  "No account? Sign up",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 24, 21, 66),
+                    fontFamily: 'chunck',
+                    fontSize: 21,
+                    fontWeight: FontWeight.w100,
+                  ),
+                ),
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.54,
-              right: 110,
+              top: heightOfScreen * 0.63,
+              right: widthOfScreen * 0.15,
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -181,7 +193,7 @@ class _ProfessorLogin extends State<ProfessorLogin> {
                   onEnter: (_) => _onHover(true),
                   onExit: (_) => _onHover(false),
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                     width: _isHovered ? 128 : 120,
                     height: _isHovered ? 58 : 50,
                     decoration: BoxDecoration(
