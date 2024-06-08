@@ -221,6 +221,58 @@ class _StudentLoginState extends State<StudentLogin> {
                 ),
               ),
             ),
+            Positioned(
+              top: heightOfScreen * 0.71,
+              left: widthOfScreen * 0.25,
+              child: const Text(
+                "-------------------------- Or --------------------------",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 24, 21, 66),
+                  fontFamily: 'chunck',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w100,
+                ),
+              ),
+            ),
+            Positioned(
+              top: heightOfScreen * 0.77,
+              left: widthOfScreen * 0.35,
+              width: widthOfScreen * 0.75,
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      // Handle Twitter login
+                    },
+                    icon: const Icon(
+                      Icons.biotech,
+                      color: Colors.purple,
+                      size: 56,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // Handle Facebook login
+                    },
+                    icon: const Icon(
+                      Icons.facebook,
+                      color: Colors.purple,
+                      size: 56,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // Handle Gmail login
+                    },
+                    icon: const Icon(
+                      Icons.mail,
+                      color: Colors.purple,
+                      size: 56,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

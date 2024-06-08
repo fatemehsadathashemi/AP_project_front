@@ -43,26 +43,26 @@ class WelcomePage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Positioned(
-              left: widthOfScreen * 0.13,
-              top: heightOfScreen * 0.07,
+              left: widthOfScreen * 0.09,
+              top: heightOfScreen * 0.065,
               child: const Text(
                 "Welcome to",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66),
-                  fontSize: 55,
+                  fontSize: 57,
                   fontWeight: FontWeight.w200,
                   fontFamily: 'merich',
                 ),
               ),
             ),
             Positioned(
-              left: widthOfScreen * 0.33,
-              top: heightOfScreen * 0.125,
+              left: widthOfScreen * 0.28,
+              top: heightOfScreen * 0.12,
               child: const Text(
                 "UniHub",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66),
-                  fontSize: 82,
+                  fontSize: 84,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'merich',
                   fontStyle: FontStyle.italic,
@@ -82,65 +82,29 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.155,
+              top: heightOfScreen * 0.152,
               right: widthOfScreen * 0.05,
-              child: ElevatedButtonWithHover(
+              child:  ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(_createRoute());
-                },
-                child: const Text('Continue'),
+                } ,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(widthOfScreen * 0.18, heightOfScreen * 0.035),
+                  side: BorderSide(width: 1.0 , color:Colors.purple.shade600  , )
+                ),
+
+                child: Text(
+                  'Continue',
+                   style: TextStyle(
+                     color: Colors.purple.shade600,
+                     fontWeight: FontWeight.w500,
+                     fontSize: 14,
+                     fontFamily: 'chunck',
+                ),
               ),
             ),
+            )
           ],
-        ),
-      ),
-    );
-  }
-}
-class ElevatedButtonWithHover extends StatefulWidget {
-  final VoidCallback onPressed;
-  final Widget child;
-
-  const ElevatedButtonWithHover({Key? key, required this.onPressed, required this.child}) : super(key: key);
-
-  @override
-  _ElevatedButtonWithHoverState createState() => _ElevatedButtonWithHoverState();
-}
-
-class _ElevatedButtonWithHoverState extends State<ElevatedButtonWithHover> {
-  bool _isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: ElevatedButton(
-        onPressed: widget.onPressed,
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                (states) {
-              if (states.contains(MaterialState.hovered)) {
-                return Colors.purple;
-              }
-              return Colors.white;
-            },
-          ),
-          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(16)),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30), // Adjust the radius as needed
-              side: const BorderSide(color: Colors.purple),
-            ),
-          ),
-        ),
-        child: DefaultTextStyle(
-          style: TextStyle(
-            color: _isHovered ? Colors.white : Colors.purple,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-          child: widget.child,
         ),
       ),
     );

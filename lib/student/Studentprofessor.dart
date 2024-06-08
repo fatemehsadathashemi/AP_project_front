@@ -10,21 +10,40 @@ class StudentProfessor extends StatefulWidget {
 }
 
 class _StudentProfessorState extends State<StudentProfessor> {
-  bool _isHoveringStudent = false;
-  bool _isHoveringProfessor = false;
+  bool _isStudentSelected = false;
+  bool _isProfessorSelected = false;
 
-  void _onStudentClick() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => StudentLogin()),
+  Route _createRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(1.0, 0.0);
+        var end = Offset.zero;
+        var curve = Curves.easeInOut;
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: child,
+        );
+      },
     );
   }
 
-  void _onProfessorClick() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProfessorLogin()),
-    );
+  void _onStudentClick(BuildContext context) {
+    setState(() {
+      _isStudentSelected = true;
+      _isProfessorSelected = false;
+    });
+    Navigator.of(context).push(_createRoute(StudentLogin()));
+  }
+
+  void _onProfessorClick(BuildContext context) {
+    setState(() {
+      _isStudentSelected = false;
+      _isProfessorSelected = true;
+    });
+    Navigator.of(context).push(_createRoute(ProfessorLogin()));
   }
 
   @override
@@ -59,24 +78,15 @@ class _StudentProfessorState extends State<StudentProfessor> {
               bottom: heightOfScreen * 0.45,
               height: heightOfScreen * 0.2,
               width: widthOfScreen * 0.42,
-              child: MouseRegion(
-                onEnter: (_) => setState(() {
-                  _isHoveringStudent = true;
-                }),
-                onExit: (_) => setState(() {
-                  _isHoveringStudent = false;
-                }),
-                child: GestureDetector(
-                  onTap: _onStudentClick,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    transform: _isHoveringStudent
-                        ? (Matrix4.identity()
-                      ..scale(1.1)
-                      ..translate(-10, -10))
-                        : Matrix4.identity(),
-                    child: Image.asset('images/students.png'),
+              child: GestureDetector(
+                onTap: () => _onStudentClick(context),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: _isStudentSelected
+                        ? Border.all(color: Colors.purple, width: 2.0)
+                        : null,
                   ),
+                  child: Image.asset('images/students.png'),
                 ),
               ),
             ),
@@ -85,24 +95,15 @@ class _StudentProfessorState extends State<StudentProfessor> {
               bottom: heightOfScreen * 0.435,
               height: heightOfScreen * 0.23,
               width: widthOfScreen * 0.44,
-              child: MouseRegion(
-                onEnter: (_) => setState(() {
-                  _isHoveringProfessor = true;
-                }),
-                onExit: (_) => setState(() {
-                  _isHoveringProfessor = false;
-                }),
-                child: GestureDetector(
-                  onTap: _onProfessorClick,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    transform: _isHoveringProfessor
-                        ? (Matrix4.identity()
-                      ..scale(1.1)
-                      ..translate(-10, -10))
-                        : Matrix4.identity(),
-                    child: Image.asset('images/professors.png'),
+              child: GestureDetector(
+                onTap: () => _onProfessorClick(context),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: _isProfessorSelected
+                        ? Border.all(color: Colors.purple, width: 2.0)
+                        : null,
                   ),
+                  child: Image.asset('images/professors.png'),
                 ),
               ),
             ),
