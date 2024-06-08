@@ -70,19 +70,18 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: widthOfScreen * 0.38,
               bottom: 0,
-              height: heightOfScreen * 0.64,
-              width: widthOfScreen * 0.7,
+              height: heightOfScreen * 0.7,
+              width: widthOfScreen ,
               child: SizedBox(
                 child: Image.asset(
-                  'images/welcome2.png',
+                  'images/ss.png',
                   fit: BoxFit.fill,
                 ),
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.152,
+              top: heightOfScreen * 0.2,
               right: widthOfScreen * 0.05,
               child:  ElevatedButton(
                 onPressed: () {

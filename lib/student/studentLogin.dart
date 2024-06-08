@@ -1,3 +1,4 @@
+import 'package:approjectfront/student/studentInfo.dart';
 import 'package:approjectfront/student/studentSignup.dart';
 import 'package:flutter/material.dart';
 import 'InfoScreen.dart';
@@ -181,7 +182,7 @@ class _StudentLoginState extends State<StudentLogin> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => InfoScreen()),
+                        MaterialPageRoute(builder: (context) => StudentInfoPage()),
                       );
                     },
                     child: Container(
