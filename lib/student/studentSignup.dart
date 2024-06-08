@@ -270,7 +270,10 @@ class _StudentSignUpState extends State<StudentSignUp> {
 
                     },
                     child: Container(
+                      height: 50,
+                      width:120,
                       decoration: BoxDecoration(
+                        color: Colors.purple,
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: const [
                           BoxShadow(
@@ -283,8 +286,9 @@ class _StudentSignUpState extends State<StudentSignUp> {
                         child: Text(
                           'Sign Up',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
                           ),
                         ),
                       ),

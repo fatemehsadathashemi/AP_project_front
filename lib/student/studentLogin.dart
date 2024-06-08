@@ -186,7 +186,10 @@ class _StudentLoginState extends State<StudentLogin> {
                       );
                     },
                     child: Container(
+                      height: 50,
+                      width:120,
                       decoration: BoxDecoration(
+                        color: Colors.purple,
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: const [
                           BoxShadow(
@@ -199,8 +202,9 @@ class _StudentLoginState extends State<StudentLogin> {
                         child: Text(
                           'Login',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white
                           ),
                         ),
                       ),

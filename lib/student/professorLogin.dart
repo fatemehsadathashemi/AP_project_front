@@ -187,26 +187,30 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
                     MaterialPageRoute(builder: (context) => InfoScreen()),
                   );
                 },
-                child:Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 8,
-                        ),
-                      ],
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          fontSize: 16,
+                child: Container(
+                  height: 50,
+                  width:120,
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
-                        ),
+                          color: Colors.white
                       ),
                     ),
                   ),
+                ),
                 ),
               ),
             Positioned(

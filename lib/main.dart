@@ -43,26 +43,25 @@ class WelcomePage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Positioned(
-              left: widthOfScreen * 0.09,
-              top: heightOfScreen * 0.065,
+              left: widthOfScreen * 0.28,
+              top: heightOfScreen * 0.05,
               child: const Text(
                 "Welcome to",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66),
-                  fontSize: 57,
-                  fontWeight: FontWeight.w200,
+                  fontSize: 55,
                   fontFamily: 'merich',
                 ),
               ),
             ),
             Positioned(
-              left: widthOfScreen * 0.28,
+              left: widthOfScreen * 0.3,
               top: heightOfScreen * 0.12,
               child: const Text(
                 "UniHub",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 21, 66),
-                  fontSize: 84,
+                  fontSize: 80,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'merich',
                   fontStyle: FontStyle.italic,
