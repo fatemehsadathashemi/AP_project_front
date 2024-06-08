@@ -1,32 +1,29 @@
+import 'package:approjectfront/student/professorLogin.dart';
 import 'package:flutter/material.dart';
-import 'InfoScreen.dart';
-import 'package:approjectfront/student/professorSignup.dart';
 
-
-class ProfessorLogin extends StatefulWidget {
-  const ProfessorLogin({super.key});
+class ProfessorSignUp extends StatefulWidget {
+  const ProfessorSignUp({Key? key}) : super(key: key);
 
   @override
-  State<ProfessorLogin> createState() => _ProfessorLoginState();
+  _ProfessorSignUpState createState() => _ProfessorSignUpState();
 }
 
-class _ProfessorLoginState extends State<ProfessorLogin> {
-  TextEditingController professorID = TextEditingController();
+class _ProfessorSignUpState extends State<ProfessorSignUp> {
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController studentID = TextEditingController();
   TextEditingController password = TextEditingController();
-  bool obscure = true, userIDChecker = true, passwordChecker = true;
-
+  bool obscure = true;
 
   @override
   Widget build(BuildContext context) {
     double heightOfScreen = MediaQuery.of(context).size.height;
     double widthOfScreen = MediaQuery.of(context).size.width;
 
-
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Professor Login Page',
+          'Professor Sign Up',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 24,
@@ -45,27 +42,26 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
         child: Stack(
           children: <Widget>[
             Positioned(
-              height: heightOfScreen * 0.4,
-              width: widthOfScreen * 0.75,
+              height: heightOfScreen * 0.33,
+              width: widthOfScreen * 0.60,
               top: heightOfScreen * 0.045,
-              left: widthOfScreen * 0.125,
+              left: widthOfScreen * 0.37,
               child: SizedBox(
-                child: Image.asset('images/prof.png'),
+                child: Image.asset('images/profe.png'),
               ),
             ),
             Positioned(
               left: widthOfScreen * 0.15,
-              top: heightOfScreen * 0.49,
+              top: heightOfScreen * 0.4,
               child: SizedBox(
                 width: widthOfScreen * 0.7,
                 child: TextFormField(
-                  controller: professorID,
+                  controller: firstName,
                   textAlign: TextAlign.left,
-                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white60,
-                    labelText: 'Professor ID',
+                    labelText: 'First Name',
                     labelStyle: const TextStyle(
                       color: Color.fromARGB(255, 24, 21, 66),
                       fontSize: 23,
@@ -77,10 +73,10 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
                         color: Color.fromARGB(255, 24, 21, 66),
                       ),
                     ),
-                    hintText: 'Please add your ID here!',
+                    hintText: 'Enter your first name',
                     hintStyle: const TextStyle(
                       color: Color.fromARGB(255, 24, 21, 66),
-                      fontSize: 24,
+                      fontSize: 20,
                       fontStyle: FontStyle.italic,
                     ),
                     enabledBorder: OutlineInputBorder(
@@ -100,7 +96,96 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
             ),
             Positioned(
               left: widthOfScreen * 0.15,
-              top: heightOfScreen * 0.56,
+              top: heightOfScreen * 0.47,
+              child: SizedBox(
+                width: widthOfScreen * 0.7,
+                child: TextFormField(
+                  controller: lastName,
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white60,
+                    labelText: 'Last Name',
+                    labelStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 23,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'chunck',
+                    ),
+                    border: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 24, 21, 66),
+                      ),
+                    ),
+                    hintText: 'Enter your last name',
+                    hintStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.purple.shade100),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 24, 21, 66),
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: widthOfScreen * 0.15,
+              top: heightOfScreen * 0.54,
+              child: SizedBox(
+                width: widthOfScreen * 0.7,
+                child: TextFormField(
+                  controller: studentID,
+                  textAlign: TextAlign.left,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white60,
+                    labelText: 'Professor ID',
+                    labelStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 23,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'chunck',
+                    ),
+                    border: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 24, 21, 66),
+                      ),
+                    ),
+                    hintText: 'Enter your Professor ID',
+                    hintStyle: const TextStyle(
+                      color: Color.fromARGB(255, 24, 21, 66),
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.purple.shade100),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 24, 21, 66),
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: widthOfScreen * 0.15,
+              top: heightOfScreen * 0.61,
               child: SizedBox(
                 width: widthOfScreen * 0.7,
                 child: TextFormField(
@@ -122,10 +207,10 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
                         color: Color.fromARGB(255, 24, 21, 66),
                       ),
                     ),
-                    hintText: 'Please add the Password here!',
+                    hintText: 'Enter your password',
                     hintStyle: const TextStyle(
                       color: Color.fromARGB(255, 24, 21, 66),
-                      fontSize: 24,
+                      fontSize: 20,
                       fontStyle: FontStyle.italic,
                     ),
                     suffixIcon: IconButton(
@@ -155,20 +240,20 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.63,
+              top: heightOfScreen * 0.68,
               left: widthOfScreen * 0.15,
               child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfessorSignUp(),
+                      builder: (context) => ProfessorLogin(),
                     ),
                   );
                 },
                 child: const Text(
-                  "No account? Sign up",
-                  style: TextStyle(
+                    "Already have an account? Login",
+                    style: TextStyle(
                     color: Color.fromARGB(255, 24, 21, 66),
                     fontFamily: 'chunck',
                     fontSize: 21,
@@ -178,87 +263,32 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.63,
+              top: heightOfScreen * 0.68,
               right: widthOfScreen * 0.15,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => InfoScreen()),
-                  );
+
                 },
-                child:Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 8,
-                        ),
-                      ],
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
-              ),
-            Positioned(
-              top: heightOfScreen * 0.71,
-              left: widthOfScreen * 0.25,
-              child: const Text(
-                "-------------------------- Or --------------------------",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 24, 21, 66),
-                  fontFamily: 'chunck',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w100,
-                ),
-              ),
-            ),
-            Positioned(
-              top: heightOfScreen * 0.77,
-              left: widthOfScreen * 0.35,
-              width: widthOfScreen * 0.75,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      // Handle Twitter login
-                    },
-                    icon: const Icon(
-                      Icons.biotech,
-                      color: Colors.purple,
-                      size: 56,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // Handle Facebook login
-                    },
-                    icon: const Icon(
-                      Icons.facebook,
-                      color: Colors.purple,
-                      size: 56,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // Handle Gmail login
-                    },
-                    icon: const Icon(
-                      Icons.mail,
-                      color: Colors.purple,
-                      size: 56,
-                    ),
-                  ),
-                ],
               ),
             ),
           ],
