@@ -81,8 +81,10 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: heightOfScreen * 0.2,
-              right: widthOfScreen * 0.05,
+              top: heightOfScreen * 0.24,
+              right: widthOfScreen * 0.4,
+              width: widthOfScreen * 0.2,
+              height: heightOfScreen * 0.045,
               child:  ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(_createRoute());

@@ -1,3 +1,4 @@
+import 'package:approjectfront/student/studentLogin.dart';
 import 'package:flutter/material.dart';
 
 class StudentInfoPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class StudentInfoPage extends StatelessWidget {
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 24,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w500,
             fontFamily: 'merich',
             fontStyle: FontStyle.italic,
           ),
@@ -25,13 +26,13 @@ class StudentInfoPage extends StatelessWidget {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 254, 196, 234),
+          color: const Color.fromARGB(255, 254, 196, 234),
         ),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              vertical: heightOfScreen * 0.02,
-              horizontal: widthOfScreen * 0.1,
+              vertical: heightOfScreen * 0.04,
+              horizontal: widthOfScreen * 0.15,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,23 +47,13 @@ class StudentInfoPage extends StatelessWidget {
 
                 SizedBox(height: heightOfScreen * 0.03),
 
-                // Schedule
-                _buildScheduleSection(),
 
-                SizedBox(height: heightOfScreen * 0.03),
-
-                // Notifications
-                _buildNotificationsSection(),
-
-                SizedBox(height: heightOfScreen * 0.03),
-
-                // Upcoming Events
-                _buildUpcomingEventsSection(),
               ],
             ),
           ),
         ),
       ),
+      drawer: _buildDrawer(context),
     );
   }
 
@@ -74,38 +65,35 @@ class StudentInfoPage extends StatelessWidget {
           'Profile Information',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
+            fontSize: 25,
             fontFamily: 'chunck',
           ),
         ),
-        SizedBox(height: widthOfScreen * 0.02),
+        SizedBox(height: widthOfScreen * 0.04),
         Row(
           children: [
-            CircleAvatar(
-              radius: 40,
-              backgroundImage: AssetImage('images/profile.png'), // Placeholder image
+            const CircleAvatar(
+              radius: 80,
+              backgroundImage: AssetImage('images/pr.png'),
             ),
             SizedBox(width: widthOfScreen * 0.05),
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'Name: John Doe',
+                  'Name: Fatemeh Hashemi',
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 21, 66),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'chunck',
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
                 Text(
                   'Student ID: 123456789',
                   style: TextStyle(
                     color: Color.fromARGB(255, 24, 21, 66),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'chunck',
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ],
@@ -117,139 +105,107 @@ class StudentInfoPage extends StatelessWidget {
   }
 
   Widget _buildAcademicSection() {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Text(
           'Academic Information',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
+            fontSize: 25,
             fontFamily: 'chunck',
           ),
         ),
         SizedBox(height: 10),
         Text(
-          'Current Semester Units: 18',
+          'Current Semester Units: 22',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
-          ),
+            fontSize: 21,
+            fontWeight: FontWeight.bold),
         ),
         Text(
-          'GPA: 3.75',
+          'GPA: 3.65',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildScheduleSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'Schedule',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'chunck',
-          ),
-        ),
-        SizedBox(height: 10),
-        Text(
-          'Monday: Math 101 - 9:00 AM - 10:30 AM',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
-          ),
-        ),
-        Text(
-          'Wednesday: Physics 201 - 11:00 AM - 12:30 PM',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
-          ),
-        ),
-        // Add more schedule details as needed
-      ],
-    );
-  }
 
-  Widget _buildNotificationsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'Notifications',
+  Widget _buildDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+      const DrawerHeader(
+        decoration: BoxDecoration(
+          color: Color.fromARGB(245, 239, 176, 216),
+    ),
+        child: Text(
+          '  Menu',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'chunck',
+            fontSize: 30,
+            fontFamily: 'merich',
           ),
         ),
-        SizedBox(height: 10),
-        Text(
-          'No new notifications.',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
-          ),
-        ),
-      ],
-    );
-  }
+      ),
+            ListTile(
+              leading: const Icon(Icons.account_circle),
+              title: const Text('Profile Settings'),
+              onTap: () {
 
-  Widget _buildUpcomingEventsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'Upcoming Events',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 23,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'chunck',
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.school),
+              title: const Text('Academic Records'),
+              onTap: () {
+
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.book),
+              title: const Text('Course Management'),
+              onTap: () {
+
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.book),
+              title: const Text('Weekly Schedule'),
+              onTap: () {
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.library_books),
+              title: const Text('Exams Schedule'),
+              onTap: () {
+
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const StudentLogin(),
           ),
-        ),
-        SizedBox(height: 10),
-        Text(
-          'Midterm Exams: March 15 - March 22',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
-          ),
-        ),
-        Text(
-          'Spring Break: April 1 - April 7',
-          style: TextStyle(
-            color: Color.fromARGB(255, 24, 21, 66),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'chunck',
-          ),
-        ),
-        // Add more events as needed
-      ],
+        );
+      },
+    ),
+          ],
+      ),
     );
   }
 }
+
