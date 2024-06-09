@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:approjectfront/professor/professorSignup.dart';
 
-import '../student/InfoScreen.dart';
-
 
 class ProfessorLogin extends StatefulWidget {
   const ProfessorLogin({super.key});
@@ -183,10 +181,6 @@ class _ProfessorLoginState extends State<ProfessorLogin> {
               right: widthOfScreen * 0.15,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => InfoScreen()),
-                  );
                 },
                 child: Container(
                   height: 50,

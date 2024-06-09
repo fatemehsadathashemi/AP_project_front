@@ -3,7 +3,7 @@ import 'package:approjectfront/student/studentLogin.dart';
 import 'package:flutter/material.dart';
 
 class StudentSignUp extends StatefulWidget {
-  const StudentSignUp({Key? key}) : super(key: key);
+  const StudentSignUp({super.key});
 
   @override
   _StudentSignUpState createState() => _StudentSignUpState();

@@ -1,7 +1,6 @@
 import 'package:approjectfront/student/studentInfo.dart';
 import 'package:approjectfront/student/studentSignup.dart';
 import 'package:flutter/material.dart';
-import 'InfoScreen.dart';
 
 class StudentLogin extends StatefulWidget {
   const StudentLogin({super.key});
@@ -182,7 +181,7 @@ class _StudentLoginState extends State<StudentLogin> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => StudentInfoPage()),
+                        MaterialPageRoute(builder: (context) => const StudentInfoPage()),
                       );
                     },
                     child: Container(
@@ -232,7 +231,6 @@ class _StudentLoginState extends State<StudentLogin> {
               children: [
                 IconButton(
                   onPressed: () {
-                    // Handle Twitter login
                   },
                   icon: const Icon(
                     Icons.biotech,
@@ -242,7 +240,6 @@ class _StudentLoginState extends State<StudentLogin> {
                 ),
                 IconButton(
                   onPressed: () {
-                    // Handle Facebook login
                   },
                   icon: const Icon(
                     Icons.facebook,
@@ -252,7 +249,6 @@ class _StudentLoginState extends State<StudentLogin> {
                 ),
                 IconButton(
                   onPressed: () {
-                    // Handle Gmail login
                   },
                   icon: const Icon(
                     Icons.mail,
@@ -263,9 +259,9 @@ class _StudentLoginState extends State<StudentLogin> {
               ],
             ),
           ),
-    ]
+              ]
+          )
         )
-    )
     );
   }
 }
