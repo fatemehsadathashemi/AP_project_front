@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:approjectfront/student/Studentprofessor.dart';
+import 'package:approjectfront/Studentprofessor.dart';
 
 void main() {
   runApp(const MaterialApp(

@@ -1,3 +1,4 @@
+import 'package:approjectfront/student/studentInfo.dart';
 import 'package:approjectfront/student/studentLogin.dart';
 import 'package:flutter/material.dart';
 
@@ -267,7 +268,10 @@ class _StudentSignUpState extends State<StudentSignUp> {
                   right: widthOfScreen * 0.15,
                   child: GestureDetector(
                     onTap: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => StudentInfoPage()),
+                      );
                     },
                     child: Container(
                       height: 50,

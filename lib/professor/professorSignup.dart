@@ -1,4 +1,4 @@
-import 'package:approjectfront/student/professorLogin.dart';
+import 'package:approjectfront/professor/professorLogin.dart';
 import 'package:flutter/material.dart';
 
 class ProfessorSignUp extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:approjectfront/student/studentLogin.dart';
-import 'package:approjectfront/student/professorLogin.dart';
+import 'package:approjectfront/professor/professorLogin.dart';
 
 class StudentProfessor extends StatefulWidget {
   const StudentProfessor({Key? key}) : super(key: key);
