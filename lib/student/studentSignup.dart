@@ -53,14 +53,7 @@ class _StudentSignUpState extends State<StudentSignUp> {
       serverSocket.flush();
       await serverSocket.close();
 
-      // Write student ID and password to a text file
-      final file = File('${"D:\\uni_files\\semester4\\apProject\\server\\studentsInformation.txt"}/studentsInformation.txt');
-      await file.writeAsString('$studentID|$password\n', mode: FileMode.append);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const StudentInfoPage()),
-      );
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const StudentInfoPage()),
@@ -373,7 +366,7 @@ class _StudentSignUpState extends State<StudentSignUp> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StudentLogin(),
+                      builder: (context) => const StudentLogin(),
                     ),
                   );
                 },

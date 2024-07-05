@@ -7,6 +7,7 @@ class Server {
     public static void main(String[] args) throws IOException {
         System.out.println("Welcome to the server!");
         ServerSocket serverSocket = new ServerSocket(8080);
+        System.out.println("Server is running and listening on port 8080");
         while (true) {
             System.out.println("Waiting for client...");
             new ClientHandler(serverSocket.accept()).start();
@@ -18,11 +19,9 @@ class ClientHandler extends Thread {
     Socket socket;
     DataOutputStream dos;
     DataInputStream dis;
-    List<String> loggedInUsers ;
-//    Vector<User> usersInfo;
 
     public ClientHandler(Socket socket) throws IOException {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("New client connected!");
 
         this.socket = socket;
         dos = new DataOutputStream(socket.getOutputStream());
@@ -84,7 +83,7 @@ class ClientHandler extends Thread {
                 boolean signedIn = false;
                 int responseOfDatabase = 100;
                 try {
-                    responseOfDatabase = StudentInformation.usersChecker(split[1], split[2]);
+                    responseOfDatabase = StudentLoginSignupInfo.usersChecker(split[1], split[2]);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -130,7 +129,7 @@ class ClientHandler extends Thread {
 
                 // Save student information to a text file
                 try {
-                    String filePath = "D:\\uni_files\\semester4\\apProject\\server\\studentsInformation.txt";
+                    String filePath = "D:\\uni_files\\semester4\\apProject\\server\\studentLoginSignupInfo.txt";
                     Files.writeString(Paths.get(filePath), studentID + "~" + password + "\n", StandardOpenOption.APPEND);
                     System.out.println("Student ID and password saved to file.");
 

@@ -24,8 +24,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.approjectfront"
-    compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    compileSdkVersion 33  // Specify the SDK version directly
+    ndkVersion '21.4.7075529'  // Specify the NDK version directly if needed
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -33,21 +33,16 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.approjectfront"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21  // Specify the minimum SDK version directly
+        targetSdkVersion 33  // Specify the target SDK version directly
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.debug  // Change this for production builds
         }
     }
 }
@@ -55,3 +50,4 @@ android {
 flutter {
     source '../..'
 }
+
