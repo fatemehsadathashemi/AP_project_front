@@ -1,11 +1,49 @@
+import 'dart:io';
 import 'package:approjectfront/student/studentAssignment.dart';
 import 'package:approjectfront/student/studentLogin.dart';
 import 'package:approjectfront/student/studentTodolist.dart';
 import 'package:flutter/material.dart';
 
-class StudentInfoPage extends StatelessWidget {
-  const StudentInfoPage({super.key});
+class StudentInfoPage extends StatefulWidget {
+  final String studentId;
 
+
+  const StudentInfoPage({super.key, required this.studentId});
+
+
+  @override
+  State<StudentInfoPage> createState() => _StudentInfoPageState();
+
+}
+class _StudentInfoPageState extends State<StudentInfoPage> {
+  String response = "";
+
+  @override
+  void initState() {
+    super.initState();
+    informationDetector();
+  }
+
+  Future<void> informationDetector() async {
+    try {
+      final serverSocket = await Socket.connect("192.168.147.204", 8080);
+      serverSocket.write('GET: StudentInformation~${widget.studentId}\u0000');
+      await serverSocket.flush();
+
+      serverSocket.listen((socketResponse) {
+        setState(() {
+          response = String.fromCharCodes(socketResponse);
+          print("Response from server: $response");
+        });
+        serverSocket.destroy(); // Close the socket after receiving response
+      }).onError((error) {
+        print("Error: $error");
+        serverSocket.destroy(); // Close the socket on error
+      });
+    } catch (e) {
+      print("Exception: $e");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     double heightOfScreen = MediaQuery.of(context).size.height;
@@ -80,11 +118,12 @@ class StudentInfoPage extends StatelessWidget {
   }
 
   Widget _buildProfileSection() {
+
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Name: Fatemeh Hashemi',
+          'Name: ',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,
@@ -92,7 +131,7 @@ class StudentInfoPage extends StatelessWidget {
           ),
         ),
         Text(
-          'Student ID: 123456789',
+          'Student ID: ',
           style: TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,

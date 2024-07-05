@@ -37,7 +37,7 @@ class _StudentLoginState extends State<StudentLogin> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const StudentInfoPage(),
+              builder: (context) =>  StudentInfoPage(studentId: studentID.text,)
             ),
           );
         }

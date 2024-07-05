@@ -55,12 +55,13 @@ class ClientHandler extends Thread {
     public void writer(String write) throws IOException {
         dos.writeBytes(write);
         dos.flush();
+        socket.close();
         dos.close();
         dis.close();
-        socket.close();
         System.out.println(write);
         System.out.println("command finished and response sent to server -- the response is: " + write);
     }
+
 
     @Override
     public void run() {
@@ -80,7 +81,6 @@ class ClientHandler extends Thread {
                 // 2 -> both user ID & password is correct so allow signing in
                 // 1 -> user ID is correct but password is incorrect
                 // 0 -> user ID is incorrect
-                boolean signedIn = false;
                 int responseOfDatabase = 100;
                 try {
                     responseOfDatabase = StudentLoginSignupInfo.usersChecker(split[1], split[2]);
@@ -88,7 +88,6 @@ class ClientHandler extends Thread {
                     e.printStackTrace();
                 }
                 if (responseOfDatabase == 2) {
-                    signedIn = true;
                     System.out.println("status code is 200");
                     System.out.println("Successfully logged in!");
                     try {
@@ -99,7 +98,6 @@ class ClientHandler extends Thread {
                 }
 
                 else if (responseOfDatabase == 1) {
-                    signedIn = false;
                     System.out.println("status code is 401");
                     System.out.println("Password is incorrect!");
                     try {
@@ -110,7 +108,6 @@ class ClientHandler extends Thread {
                 }
 
                 else if (responseOfDatabase == 0) {
-                    signedIn = false;
                     System.out.println("status code is 404");
                     System.out.println("User not founded!");
                     try {
@@ -145,6 +142,48 @@ class ClientHandler extends Thread {
                 }
                 break;
             }
+            case "POST: StudentInformation":{
+                String studentID = split[1];
+                String password = split[2];
+                String firstName = split[3];
+                String lastName = split[4];
+
+                try {
+                    String filePath = "D:\\uni_files\\semester4\\apProject\\server\\usersInfo.txt";
+                    Files.writeString(Paths.get(filePath), studentID + "~" + password + "~" + firstName + "~" + lastName + "\n", StandardOpenOption.APPEND);
+                    System.out.println("Student information saved to file.");
+
+                    // Send success response back to client
+                    writer("200");
+                } catch (IOException e) {
+                    System.err.println("Error saving student information: " + e.getMessage());
+                    try {
+                        writer("500"); // Send error response back to client
+                    } catch (IOException ex) {
+                        System.err.println("Error sending error response: " + ex.getMessage());
+                    }
+                }
+                break;
+
+            }
+
+            case "GET: StudentInformation":{
+                String studentID = split[1];
+                String response = "";
+                try {
+                    response = StudentInformation.information(studentID);
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    writer(response);
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             default:
                 System.out.println("Unsupported command");
                 try {
@@ -154,9 +193,7 @@ class ClientHandler extends Thread {
                 }
                 break;
 
-            }
-
         }
+
     }
-
-
+}

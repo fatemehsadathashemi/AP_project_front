@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import intl package for date formatting
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -68,7 +68,7 @@ class _StudentToDoListPageState extends State<StudentToDoListPage> {
         onPressed: _addTask,
         tooltip: 'Add Task',
         child: const Icon(Icons.add),
-        backgroundColor: const Color.fromARGB(245, 239, 176, 216),
+        backgroundColor: Colors.blue, // Change the background color here
         foregroundColor: const Color.fromARGB(255, 24, 21, 66),
       ),
     );
@@ -186,7 +186,6 @@ class _StudentToDoListPageState extends State<StudentToDoListPage> {
       ),
     );
   }
-
 
   void _addTask() {
     showDialog(

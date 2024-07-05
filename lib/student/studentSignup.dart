@@ -53,10 +53,26 @@ class _StudentSignUpState extends State<StudentSignUp> {
       serverSocket.flush();
       await serverSocket.close();
 
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) =>  StudentInfoPage( studentId: studentID,)),
+      );
+    } catch (e) {
+      print("Error connecting to server: $e");
+
+    }
+  }
+
+  Future<void> saveToFile(String studentID, String password , String firstName , String lastName) async {
+    try {
+      final serverSocket = await Socket.connect("192.168.147.204", 8080);
+      serverSocket.write('POST: StudentInformation~$studentID~$password~$firstName~$lastName\u0000');
+      serverSocket.flush();
+      await serverSocket.close();
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const StudentInfoPage()),
+        MaterialPageRoute(builder: (context) =>  StudentInfoPage(studentId: studentID)),
       );
     } catch (e) {
       print("Error connecting to server: $e");
@@ -326,11 +342,12 @@ class _StudentSignUpState extends State<StudentSignUp> {
                     errorMessage = validateFields() ? '' : 'Please fill in all fields !!!';
                     passwordError = ''; // Reset password error message
                     if (errorMessage.isEmpty && isValidPassword(password.text, studentID.text)) {
-                      saveToTextFile(studentID.text, password.text);
+                      saveToTextFile(studentID.text, password.text );
+                      saveToFile(studentID.text , password.text , firstName.text , lastName.text);
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StudentInfoPage(),
+                          builder: (context) =>  StudentInfoPage( studentId: studentID.text),
                         ),
                       );
                     }
