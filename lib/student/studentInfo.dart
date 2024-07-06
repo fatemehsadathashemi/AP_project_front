@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:approjectfront/student/studentAssignment.dart';
 import 'package:approjectfront/student/studentLogin.dart';
 import 'package:approjectfront/student/studentTodolist.dart';
-import 'package:flutter/material.dart';
 
 class StudentInfoPage extends StatefulWidget {
   final String studentId;
@@ -10,13 +11,21 @@ class StudentInfoPage extends StatefulWidget {
 
   const StudentInfoPage({super.key, required this.studentId});
 
-
   @override
   State<StudentInfoPage> createState() => _StudentInfoPageState();
 
 }
+
 class _StudentInfoPageState extends State<StudentInfoPage> {
   String response = "";
+  String firstName = "";
+  String lastName = "";
+  String email = "";
+  String birthday = "";
+  String gender = "";
+  String numberOfUnits = "";
+  String gpa = "";
+  String major = "";
 
   @override
   void initState() {
@@ -34,6 +43,8 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
         setState(() {
           response = String.fromCharCodes(socketResponse);
           print("Response from server: $response");
+          _parseResponse();
+          serverSocket.close();
         });
         serverSocket.destroy(); // Close the socket after receiving response
       }).onError((error) {
@@ -44,6 +55,66 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
       print("Exception: $e");
     }
   }
+
+  void _parseResponse() {
+    final parts = response.split('~');
+    if (parts.length >= 10) {
+      setState(() {
+        firstName = parts[2];
+        lastName = parts[3];
+        email = parts[4];
+        birthday = parts[5];
+        gender = parts[6];
+        numberOfUnits = parts[7];
+        gpa = parts[8];
+        major = parts[9];
+      });
+    }
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        birthday = "${pickedDate.month}/${pickedDate.day}/${pickedDate.year}";
+      });
+    }
+  }
+
+  void updateProfile(String editedUserInformation) async {
+    try {
+      final serverSocket = await Socket.connect("192.168.147.204", 8080);
+
+      serverSocket.write('POST: EditedInformation~$editedUserInformation');
+      await serverSocket.flush();
+
+      serverSocket.listen(
+            (socketResponse) {
+          // Handle server response if needed
+          print('Server response: ${String.fromCharCodes(socketResponse)}');
+          serverSocket.destroy(); // Close the socket after response
+        },
+        onError: (error) {
+          print('Error listening to server: $error');
+          serverSocket.destroy(); // Close the socket on error
+        },
+        onDone: () {
+          print('Socket closed by server');
+          serverSocket.destroy(); // Close the socket on completion
+        },
+      );
+
+    } catch (e) {
+      print('Error connecting to server: $e');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double heightOfScreen = MediaQuery.of(context).size.height;
@@ -92,7 +163,7 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: heightOfScreen * 0.10 ),
+                    SizedBox(height: heightOfScreen * 0.10),
                     _buildProfileSection(),
                     SizedBox(height: heightOfScreen * 0.03),
                     _buildAcademicSection(),
@@ -118,21 +189,44 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
   }
 
   Widget _buildProfileSection() {
-
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Name: ',
-          style: TextStyle(
+          'Name: $firstName $lastName',
+          style: const TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          'Student ID: ',
-          style: TextStyle(
+          'Student ID: ${widget.studentId}',
+          style: const TextStyle(
+            color: Color.fromARGB(255, 24, 21, 66),
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'Email: $email',
+          style: const TextStyle(
+            color: Color.fromARGB(255, 24, 21, 66),
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'Birthday: $birthday',
+          style: const TextStyle(
+            color: Color.fromARGB(255, 24, 21, 66),
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          'Gender: $gender',
+          style: const TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,
             fontWeight: FontWeight.bold,
@@ -143,28 +237,28 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
   }
 
   Widget _buildAcademicSection() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          'Current Semester Units: 22',
-          style: TextStyle(
+          'Current Semester Units: $numberOfUnits',
+          style: const TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          'GPA: 3.65',
-          style: TextStyle(
+          'GPA: $gpa',
+          style: const TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          'Major: Computer Engineering',
-          style: TextStyle(
+          'Major: $major',
+          style: const TextStyle(
             color: Color.fromARGB(255, 24, 21, 66),
             fontSize: 21,
             fontWeight: FontWeight.bold,
@@ -271,8 +365,8 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.assignment),
-            title: const Text('To Do List'),
+            leading: const Icon(Icons.check_circle_outline),
+            title: const Text('To-Do List'),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
@@ -305,67 +399,42 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final firstNameController = TextEditingController();
-        final lastNameController = TextEditingController();
-        final emailController = TextEditingController();
-        final birthdayController = TextEditingController();
-        String? genderValue;
+        TextEditingController firstNameController = TextEditingController(text: firstName);
+        TextEditingController lastNameController = TextEditingController(text: lastName);
+        TextEditingController emailController = TextEditingController(text: email);
+        TextEditingController genderController = TextEditingController(text: gender);
 
         return AlertDialog(
           title: const Text('Edit Information'),
           content: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(
+                TextField(
                   controller: firstNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'First Name',
-                  ),
+                  decoration: const InputDecoration(labelText: 'First Name'),
                 ),
-                TextFormField(
+                TextField(
                   controller: lastNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Last Name',
-                  ),
+                  decoration: const InputDecoration(labelText: 'Last Name'),
                 ),
-                TextFormField(
+                TextField(
                   controller: emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                  ),
+                  decoration: const InputDecoration(labelText: 'Email'),
                 ),
-                TextFormField(
-                  controller: birthdayController,
-                  decoration: const InputDecoration(
-                    labelText: 'Birthday',
-                  ),
-                  onTap: () async {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(2100),
-                    );
-                    if (pickedDate != null) {
-                      birthdayController.text =
-                      "${pickedDate.toLocal()}".split(' ')[0];
-                    }
-                  },
+                Row(
+                  children: [
+                    const Text('Birthday: '),
+                    TextButton(
+                      onPressed: () {
+                        _selectDate(context);
+                      },
+                      child: Text(birthday.isEmpty ? 'Select Date' : birthday),
+                    ),
+                  ],
                 ),
-                DropdownButtonFormField<String>(
-                  value: genderValue,
-                  items: ['Male', 'Female', 'Other']
-                      .map((label) => DropdownMenuItem(
-                    value: label,
-                    child: Text(label),
-                  ))
-                      .toList(),
-                  hint: const Text('Gender'),
-                  onChanged: (value) {
-                    genderValue = value;
-                  },
+                TextField(
+                  controller: genderController,
+                  decoration: const InputDecoration(labelText: 'Gender'),
                 ),
               ],
             ),
@@ -380,7 +449,17 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
             TextButton(
               child: const Text('Save'),
               onPressed: () {
-                // Add your save logic here
+                setState(() {
+                  firstName = firstNameController.text;
+                  lastName = lastNameController.text;
+                  email = emailController.text;
+                  gender = genderController.text;
+                });
+
+                final updatedResponse =
+                    '${widget.studentId}~Fatemeh401~$firstName~$lastName~$email~$birthday~$gender~$numberOfUnits~$gpa~$major';
+
+                print('Updated Response: $updatedResponse');
                 Navigator.of(context).pop();
               },
             ),
@@ -394,39 +473,14 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final oldPasswordController = TextEditingController();
-        final newPasswordController = TextEditingController();
-        final confirmPasswordController = TextEditingController();
+        TextEditingController passwordController = TextEditingController();
 
         return AlertDialog(
           title: const Text('Change Password'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: oldPasswordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Old Password',
-                  ),
-                ),
-                TextFormField(
-                  controller: newPasswordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'New Password',
-                  ),
-                ),
-                TextFormField(
-                  controller: confirmPasswordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirm Password',
-                  ),
-                ),
-              ],
-            ),
+          content: TextField(
+            controller: passwordController,
+            decoration: const InputDecoration(labelText: 'New Password'),
+            obscureText: true,
           ),
           actions: <Widget>[
             TextButton(
@@ -438,7 +492,10 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
             TextButton(
               child: const Text('Save'),
               onPressed: () {
-                // Add your change password logic here
+                String newPassword = passwordController.text;
+
+                // Send the new password to the server here
+
                 Navigator.of(context).pop();
               },
             ),
@@ -465,7 +522,8 @@ class _StudentInfoPageState extends State<StudentInfoPage> {
             TextButton(
               child: const Text('Delete'),
               onPressed: () {
-                // Add your delete account logic here
+                // Send delete account request to the server here
+
                 Navigator.of(context).pop();
               },
             ),

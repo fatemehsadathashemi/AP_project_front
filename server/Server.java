@@ -184,6 +184,30 @@ class ClientHandler extends Thread {
                 }
             }
 
+            case "POST: EditedInformation":{
+                String newInfo = split[1];
+                try {
+                    String filePath = "D:\\uni_files\\semester4\\apProject\\server\\userInfo.txt";
+                    Files.writeString(Paths.get(filePath), newInfo + "\n", StandardOpenOption.APPEND);
+                    System.out.println("student edited information saved to file.");
+
+                    // Send success response back to client
+                    writer("200");
+                } catch (IOException e) {
+                    System.err.println("Error saving student edited information: " + e.getMessage());
+                    try {
+                        writer("500"); // Send error response back to client
+                    } catch (IOException ex) {
+                        System.err.println("Error sending error response: " + ex.getMessage());
+                    }
+                }
+                break;
+
+
+            }
+
+
+
             default:
                 System.out.println("Unsupported command");
                 try {
